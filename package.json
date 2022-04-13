@@ -1,0 +1,22 @@
+{
+  "name": "asg-3",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bryanwk/asg3-2720.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bryanwk/asg3-2720/issues"
+  },
+  "homepage": "https://github.com/bryanwk/asg3-2720#readme",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}
