@@ -1,0 +1,49 @@
+<html>
+    <head>
+        
+    </head>
+    <body onload="onLoad()">
+        <script>
+            const baseURL = "http://localhost:3000/"
+
+            function onLoad() {
+                fetch(baseURL + "maxid")
+                .then(response => response.json())
+                .then(data => {
+                    var maxEid = data.maxEid + 1;
+                    const elem = document.getElementById("eventid");
+                    elem.innerHTML = maxEid
+                })
+                .catch((error) => {
+                    console.error('Error', err);
+                })
+            }
+        </script>
+        <h1>Create New Event</h1>
+        <form action="http://localhost:3000/event" method="post">
+
+        <label for="eventid">Event id:</label>
+        <h7 id="eventid">1</h7>
+        <br>
+
+        <label for="eventname">Event name</label>
+        <input type="text" id="eventname" name="name" required>
+        <br>
+
+        <label for="eventloc">Event location</label>
+        <input type="number" id="eventloc" name="loc" required>
+        <br>
+
+        <label for="eventquota">Event quota</label>
+        <input type="number" id="eventquota" name="quota" required>
+        <br>
+
+        <input type="submit">
+        </form>
+
+        <br>
+        <a href="/">Main menu</a>
+        <a href="/event">See event</a>
+        <a href="/update">Update event</a>
+    </body>
+</html>

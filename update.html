@@ -1,0 +1,83 @@
+<html>
+    <head>
+    </head>
+    <body>
+        <script>
+            const baseURL = "http://localhost:3000/"
+
+            function fetchEvent(){
+                let eid = document.getElementById("eventid").value;
+            
+                if (eid) {
+                    fetch(baseURL + "event/" + eid)
+                    .then(response => response.json())
+                    .then(data => {
+                        document.getElementById("eventname").value = data.name;
+                        document.getElementById("eventloc").value = data.loc.locId;
+                        document.getElementById("eventquota").value = data.quota;
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    })
+                }   
+            }
+
+            function onSubmit(){
+                updateEvent();
+            }
+
+            function updateEvent(){
+                let eid = document.getElementById("eventid").value;
+
+                let ename = document.getElementById("eventname").value;
+                let eloc = document.getElementById("eventloc").value;
+                let equota = document.getElementById("eventquota").value;
+
+                let data = {
+                    ename,
+                    eloc,
+                    equota,
+                };
+
+                console.log(data);
+
+                fetch(baseURL + "event/" + eid, {
+                    method: 'PUT',
+                    headers:{'Content-Type':'application/json'},
+                    body: JSON.stringify(data)
+                })
+            }
+            
+
+        </script>
+
+        <h1>Update Event</h1>
+
+        <form onsubmit="onSubmit()">
+            <label for="eventid">Event id</label>
+            <input type="text" id="eventid" name="eventId" onchange=fetchEvent()>
+            <br>
+
+            <label for="eventname">Event name</label>
+            <input type="text" id="eventname" name="name">
+            <br>
+
+            <label for="eventloc">Event location</label>
+            <input type="number" id="eventloc" name="loc">
+            <br>
+
+            <label for="eventquota">Event quota</label>
+            <input type="number" id="eventquota" name="quota">
+            <br>
+
+            <input type="hidden" name="_method" value="PUT">
+            <input type="submit">
+
+            <br>
+
+            <a href="/">Main menu</a>
+            <a href="/event">See event</a>
+            <a href="/new">Create event</a>
+        </form>
+    </body>
+</html>
